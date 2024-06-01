@@ -1,0 +1,4 @@
+z80-dotclock-gal-and-latch/plots/*
+z80-dotclock-gal-and-latch/z80-dot-gal-backups/*
+*.gif
+fp-info-cache

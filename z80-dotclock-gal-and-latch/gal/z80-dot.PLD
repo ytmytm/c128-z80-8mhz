@@ -1,0 +1,71 @@
+Name     z80-dot ;
+PartNo   00 ;
+Date     2024-06-01 ;
+Revision 01 ;
+Designer Maciej Witkowiak ;
+Company  YTM Enterprises ;
+Assembly None ;
+Location  ;
+Device   G22V10 ;	/* G22V10 needed because of async reset/preset lines */
+
+/* clk 1, oe 13 */
+/* input 1-11,13 */
+/* i/o/q 14-23 */
+/* GND 12, VCC 24 */
+
+/* *************** INPUT PINS *********************/
+PIN 1   = CLK1MHZ	;	/* Z80 is active on low phase of the system clock */
+PIN 2   = DOTCLK	;	/* 8MHz dot clock, Z80 clock starts cycle low, then rises, ends on high; sample outputs (MREQ/IOREQ on rising they are valid when clock is HIGH),  */
+PIN 3   = CLKIN	;	/* original Z80 clock (2 high pulses when CLK1MHz is low, no pulses when it's high */
+PIN 4   = !MREQ	;	/* memory request, needs address bus */
+PIN 5   = !IORQ	;	/* I/O request, needs address bus */
+/* pins 6, 7, 8 not used but connected on v1 PCB */
+PIN 6   = !BUSRQ	;	/* bus request from VIC(?) or bus disconnect when 6502 is active */
+PIN 7   = !BUSACK	;	/* Z80 ack for bus request */
+PIN 8	= !M1		;	/* first machine cycle */
+PIN 9	= !RFSH	;	/* low = that MREQ is memory refresh, not CPU access, it can be ignored */
+PIN 10 = !RESET	;	/* CPU reset */
+PIN 11 = WAITLATCH	;	/* input: latched wait from 74'74 pin 6 */
+
+PIN 15 = CLOCKSEL    ;     /* input: clock selection: open (internal pullup) = FAST, GND = SLOW */
+PIN 14 = !RD		;	/* input: active on read (almost the same as MREQ) */
+PIN 13 = !WR		;	/* input: active on write (one cycle later than MREQ) */
+
+/* *************** OUTPUT PINS *********************/
+
+PIN 23	= CLKOUT	;	/* Z80 clock, 8MHz */
+PIN 22	= WAIT		;	/* insert waitstate */
+PIN 21	= WAITTRIGGER ;	/* output: trigger (low to high) latch to fix WAITLATCH low */
+PIN 20 = WAITRESET	;	/* output: reset latch, high during Z80 phase, low during VIC phase */
+
+/** Logic Equations **/
+
+/* clock passthrough - 8MHz only when CLK1MHz is LOW (Z80 half) */
+
+CLKOUT = (!RESET &  CLOCKSEL & !CLK1MHZ & !MREQ & !WR & !DOTCLK ) 
+       # (!RESET &  CLOCKSEL & !CLK1MHZ & !MREQ &  WR & !DOTCLK )
+       # (!RESET &  CLOCKSEL & !CLK1MHZ &  MREQ &  WR )
+       # (!RESET &  CLOCKSEL & !CLK1MHZ &  MREQ & !WR & !DOTCLK )
+       # (!RESET & !CLOCKSEL & CLKIN )
+;
+
+/* reset latch during VIC phase, keep high during Z80 phase */
+WAITRESET = RESET # !CLK1MHZ;
+
+/* any address bus request: I/O or memory but not during refresh */
+WAITTRIGGER = !RESET & !RFSH & (MREQ # IORQ); /* ignore during refresh */
+
+/* copy latched wait to Z80 wait (can skip that if connected directly) */
+WAIT = CLOCKSEL & WAITLATCH # !CLOCKSEL;
+
+/*
+   7474:
+
+   WAITRESET 1   14 VCC
+         VCC 2   13 VCC
+ WAITTRIGGER 3   12 GND
+         VCC 4   11 GND
+             5   10 VCC
+   WAITLATCH 6    9
+         GND 7    8
+*/

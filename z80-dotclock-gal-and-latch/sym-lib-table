@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name "C128_CHIPS")(type "KiCad")(uri "${KIPRJMOD}/C128_CHIPS.kicad_sym")(options "")(descr ""))
+)
