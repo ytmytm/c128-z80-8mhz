@@ -2,13 +2,17 @@
 # C128 and 8MHz Z80
 
 With a simple daughterboard, a GAL and a 74LS74 the Z80 in C128 can run at dot clock frequency (almost 8MHz) during its 1MHz phase of the system clock, effectively doubling the speed.
+
 Basic benchmarks written in Turbo Pascal show that indeed it is about twice faster.
+
 CP/M is visibly snappier, to the point of being usable.
 
 <img src="media/01.rev2-installed.jpg" alt="Tower of development daughterboards" height=800>
 
 This circuit works fine, during tests it was stable for several hours, busy with drawing fractals and calculating pi using Monte-Carlo method.
+
 The CPU doesn't even get warm to the touch.
+
 Disk I/O worked fine, as well as REU ram disk M: (emulated by UII+).
 
 ## BACKGROUND
@@ -50,13 +54,13 @@ I had to add a case to `CLKOUT` to handle memory writes. Waitstate is not enough
 
 ## CIRCUIT
 
-The Kicad project is in [z80-dotclock-gal-and-latch\](z80-dotclock-gal-and-latch\) folder.
+The Kicad project is in [z80-dotclock-gal-and-latch/](z80-dotclock-gal-and-latch) folder.
 
-Schematic is also [available in PDF form](z80-dotclock-gal-and-latch\plots\z80-dot-gal.pdf).
+Schematic is also [available in PDF form](z80-dotclock-gal-and-latch/plots/z80-dot-gal.pdf).
 
 ## LOGIC EQUATIONS
 
-PLD file to be used with WinCUPL to generate JED file for programming GAL is in the [z80-dotclock-gal-and-latch\gal\](z80-dotclock-gal-and-latch\gal\) folder.
+PLD file to be used with WinCUPL to generate JED file for programming GAL is in the [z80-dotclock-gal-and-latch/gal/](z80-dotclock-gal-and-latch/gal/) folder.
 
 I just happened to have an ATF22V10 available, but after renumbering the output pins the same file will work with 16V8. The circuit is also ready for that - just align pin 1 of 16V8 with pin 1 of the socket.
 
