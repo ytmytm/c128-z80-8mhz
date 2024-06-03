@@ -1090,7 +1090,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 439227ad-579a-49c3-9718-102f58c2bd34)
   )
-  (text "JP1 - use onboard clock (1-2) or clock from GAL (2-3)\nJP2 - when closed pass waitstates from GAL\nJP3 - GAL option: when closed pass ~{CLK_IN} when open pass ~{CLK_OUT} to Z80\n\nJP3 should be enough to disable the circuit. If not, then:\n1) remove U3 and U4\n2) open JP2\n3) move JP1 to connect pins 1-2\n\nFast clock is enabled when:\n1) JP3 is open\n2) JP2 is closed\n3) JP1 connects pins 1-2\n"
+  (text "JP1 - when closed pass waitstates from GAL\nJP2 - use onboard clock (1-2) or clock from GAL (2-3)\nJP3 - GAL option: when closed pass ~{CLK_IN} when open pass ~{CLK_OUT} to Z80\n\nJP3 should be enough to disable the circuit. If not, then:\n1) remove U3 and U4\n2) move JP2 to connect pins 1-2\n3) open JP1\n\nFast clock is enabled when:\n1) JP3 is open\n2) JP2 connects pins 1-2\n3) JP1 is closed\n"
     (at 201.93 41.91 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 9bd2c18d-c4d2-4c07-9c74-0e930721b2cd)
