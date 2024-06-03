@@ -43,14 +43,16 @@ This is the normal timing of Z80 in C128. During system clock `CLK1MHZ` low phas
 
 We use `DOT CLOCK` instead to pass four ticks.
 
-<img src="media/04.fastclock-with-waitstates.jpg" alt="Oscilloscope view of D1MHZ and Z80 CLK" height=800>
-
 Whenever Z80 wants to read or write to/from memory or I/O we have to stop it until the start of the next 1MHz clock low phase.
 
 Latched data from 74LS74 will hold the `/WAIT` line low until the end of current low phase of `CLK1MHZ` (Z80 turn).
 During the following high phase (VIC's turn) 74LS74 will stay in reset and release `WAIT` to inactive (high) state, but during that time we will not output any clock pulses - just like in the original setup.
 
 I had to add a case to `CLKOUT` to handle memory writes. Waitstate is not enough, the CPU had to be really stopped. That's not an issue for reads because they are buffered with U12.
+
+Here is the effect - for two clocks Z80 was running at 1MHz because of memory write, then picked up the speed:
+
+<img src="media/04.fastclock-with-waitstates.jpg" alt="Oscilloscope view of D1MHZ and Z80 CLK" height=800>
 
 ## CIRCUIT
 
@@ -62,7 +64,8 @@ Schematic is also [available in PDF form](z80-dotclock-gal-and-latch/plots/z80-d
 
 PLD file to be used with WinCUPL to generate JED file for programming GAL is in the [z80-dotclock-gal-and-latch/gal/](z80-dotclock-gal-and-latch/gal/) folder.
 
-I just happened to have an ATF22V10 available, but after renumbering the output pins the same file will work with 16V8. The circuit is also ready for that - just align pin 1 of 16V8 with pin 1 of the socket.
+I just happened to have an ATF22V10 available, but after renumbering the output pins the same file will work with 16V8.
+The circuit is also ready for that - just align pin 1 of 16V8 with pin 1 of the socket.
 
 
 ### CLKOUT
@@ -75,7 +78,7 @@ Memory writes never happened, hence the special case with `MREQ & WR`.
 
 ## 16MHZ?
 
-I tried using the 16MHz clock signal from VDC (pin 2) instead of dot clock. That works... a bit.
+I tried using the 16MHz clock signal from VDC (pin 2) instead of dot clock.
 
 The C128 will start, but CP/M won't boot. However all my simple tests passed.
 I suspect that memory access is still an issue and some of the memory writes fail.
@@ -88,4 +91,4 @@ I suspect that memory access is still an issue and some of the memory writes fai
 2) Since I already used ATF22V10 which has asynchronous reset for registers, it should be possible to get rid of 74LS74 with different assignment of pin 1 (GAL CLK input). I wasn't able to do it.
    I'm probably doing something wrong - messing up high/low vs active/inactive or my CUPL skills are lacking (they are).
 
-3) What is the problem with 16MHz clock? Maybe it should be created by doubling the dot clock to keep things in sync?
+3) What is the problem with 16MHz clock? Maybe it should be created by doubling the dot clock to keep things in sync? (No need to bother if (1) is possible).
