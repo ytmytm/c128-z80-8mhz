@@ -119,7 +119,11 @@ I tried using the 16MHz clock signal from VDC (pin 2) instead of dot clock.
 
 The C128 will start, but CP/M won't boot. However all my simple tests passed.
 I suspect that memory access is still an issue and some of the memory writes fail.
-16MHz clock seems possible.
+
+A possible reason is that exact 16MHz signal is not a true double of the dot clock, which depends on PAL/NTSC.
+
+If this is the reason, then one solution could be to [double the dot clock using MAX9010](https://www.analog.com/en/resources/design-notes/simple-circuit-doubles-input-frequency.html).
+This idea was [already mentioned on Reddit](https://www.reddit.com/r/c128/comments/9judf7/z80_possible_clockdoubling_mitigation_against/), but that circuit would never work.
 
 ## OPEN QUESTIONS
 
