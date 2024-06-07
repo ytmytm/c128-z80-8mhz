@@ -1,0 +1,16 @@
+Name     z80-dot;
+PartNo   00;
+Date     2024-06-02;
+Revision 01;
+Designer Maciej Witkowiak;
+Company  YTM Enterprises;
+Assembly None;
+Location ;
+
+
+ORDER: CLK1MHZ ; 
+
+
+VECTORS:
+1
+0
