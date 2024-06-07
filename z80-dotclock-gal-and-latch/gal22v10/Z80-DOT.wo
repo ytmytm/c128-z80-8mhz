@@ -1,0 +1,16 @@
+#WAVEFORM
+#H Name     z80-dot;
+#H PartNo   00;
+#H Date     2024-06-02;
+#H Revision 01;
+#H Designer Maciej Witkowiak;
+#H Company  YTM Enterprises;
+#H Assembly None;
+#H Location ;
+#H 
+#H 
+#H ORDER: CLK1MHZ ; 
+#H 
+#H 
+#V 0001 1
+#V 0002 0

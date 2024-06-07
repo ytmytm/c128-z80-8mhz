@@ -1,0 +1,174 @@
+
+*******************************************************************************
+                                    z80-dot
+*******************************************************************************
+
+CUPL(WM)        5.0a Serial# 60008009
+Device          g16v8s  Library DLIB-h-40-9
+Created         Fri Jun 07 19:48:46 2024
+Name            z80-dot 
+Partno          00 
+Revision        01 
+Date            2024-06-02 
+Designer        Maciej Witkowiak 
+Company         YTM Enterprises 
+Assembly        None 
+Location        
+
+===============================================================================
+                            Expanded Product Terms
+===============================================================================
+
+!CLKOUT =>
+    RESET
+  # CLK1MHZ & CLOCKSEL
+  # !CLKIN & !CLOCKSEL
+  # CLOCKSEL & DOTCLK & !MREQ
+  # CLOCKSEL & DOTCLK & !WR
+
+!WAIT =>
+    CLOCKSEL & !WAITLATCH
+
+!WAITRESET =>
+    CLK1MHZ & !RESET
+
+!WAITTRIGGER =>
+    RESET
+  # RFSH
+  # !IORQ & !MREQ
+
+
+===============================================================================
+                                 Symbol Table
+===============================================================================
+
+Pin Variable                                    Pterms   Max     Min    
+Pol   Name              Ext     Pin     Type     Used   Pterms  Level   
+--- --------            ---     ---     ----    ------  ------  -----   
+
+ !  BUSACK                      7        V        -       -       -     
+ !  BUSRQ                       6        V        -       -       -     
+    CLK1MHZ                     1        V        -       -       -     
+    CLKIN                       3        V        -       -       -     
+    CLKOUT                      19       V        5       8       2     
+    CLOCKSEL                    14       V        -       -       -     
+    DOTCLK                      2        V        -       -       -     
+ !  IORQ                        5        V        -       -       -     
+ !  M1                          8        V        -       -       -     
+ !  MREQ                        4        V        -       -       -     
+ !  RESET                       11       V        -       -       -     
+ !  RFSH                        9        V        -       -       -     
+    WAIT                        18       V        1       8       2     
+    WAITLATCH                   12       V        -       -       -     
+    WAITRESET                   16       V        1       8       2     
+    WAITTRIGGER                 17       V        3       8       2     
+ !  WR                          13       V        -       -       -     
+
+
+LEGEND    D : default variable         F : field      G : group
+          I : intermediate variable    N : node       M : extended node
+          U : undefined                V : variable   X : extended variable
+          T : function
+
+
+===============================================================================
+                                   Fuse Plot
+===============================================================================
+
+Syn   02192 - Ac0   02193 x 
+
+Pin #19  02048  Pol -  02120  Ac1 x 
+ 00000 -------------------------------x 
+ 00032 --x---------------x------------- 
+ 00064 -----x-------------x------------ 
+ 00096 x-------x---------x------------- 
+ 00128 x-----------------x---x--------- 
+ 00160 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00192 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00224 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #18  02049  Pol -  02121  Ac1 x 
+ 00256 ------------------x--------x---- 
+ 00288 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00320 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00352 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00384 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00416 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00448 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00480 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #17  02050  Pol -  02122  Ac1 x 
+ 00512 -------------------------------x 
+ 00544 -----------------------------x-- 
+ 00576 --------x---x------------------- 
+ 00608 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00640 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00672 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00704 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00736 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #16  02051  Pol -  02123  Ac1 x 
+ 00768 --x---------------------------x- 
+ 00800 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00832 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00864 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00896 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00928 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00960 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 00992 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #15  02052  Pol x  02124  Ac1 - 
+ 01024 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01056 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01088 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01120 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01152 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01184 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01216 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01248 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #14  02053  Pol x  02125  Ac1 - 
+ 01280 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01312 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01344 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01376 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01408 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01440 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01472 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01504 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #13  02054  Pol x  02126  Ac1 - 
+ 01536 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01568 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01600 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01632 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01664 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01696 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01728 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01760 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+Pin #12  02055  Pol x  02127  Ac1 - 
+ 01792 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01824 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01856 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01888 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01920 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01952 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 01984 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+ 02016 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
+
+
+LEGEND    X : fuse not blown 
+          - : fuse blown 
+
+===============================================================================
+                                 Chip Diagram
+===============================================================================
+
+                               ______________
+                              |   z80-dot    |
+                  CLK1MHZ x---|1           20|---x Vcc                      
+                   DOTCLK x---|2           19|---x CLKOUT                   
+                    CLKIN x---|3           18|---x WAIT                     
+                    !MREQ x---|4           17|---x WAITTRIGGER              
+                    !IORQ x---|5           16|---x WAITRESET                
+                   !BUSRQ x---|6           15|---x                          
+                  !BUSACK x---|7           14|---x CLOCKSEL                 
+                      !M1 x---|8           13|---x !WR                      
+                    !RFSH x---|9           12|---x WAITLATCH                
+                      GND x---|10          11|---x !RESET                   
+                              |______________|
+

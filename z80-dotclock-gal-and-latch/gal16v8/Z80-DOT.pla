@@ -1,0 +1,34 @@
+# Berkeley PLA format generated using
+#
+# CUPL(WM)        5.0a Serial# 60008009
+# Device          g16v8s  Library DLIB-h-40-9
+# Created         Fri Jun 07 19:48:46 2024
+# Name            z80-dot 
+# Partno          00 
+# Revision        01 
+# Date            2024-06-02 
+# Designer        Maciej Witkowiak 
+# Company         YTM Enterprises 
+# Assembly        None 
+# Location        
+#
+# Inputs  !BUSACK !BUSRQ CLK1MHZ CLKIN 
+#         CLKOUT CLOCKSEL DOTCLK !IORQ 
+#         !M1 !MREQ !RESET !RFSH 
+#         WAIT WAITLATCH WAITRESET WAITTRIGGER 
+#         !WR 
+# Outputs CLKOUT WAIT WAITRESET WAITTRIGGER 
+.i 17
+.o 4
+.p 10
+----------1------ 1~~~
+--1--1----------- 1~~~
+---0-0----------- 1~~~
+-----11--0------- 1~~~
+-----11---------0 1~~~
+-----1-------0--- ~1~~
+--1-------0------ ~~1~
+----------1------ ~~~1
+-----------1----- ~~~1
+-------0-0------- ~~~1
+.end

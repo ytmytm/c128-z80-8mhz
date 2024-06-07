@@ -1,0 +1,88 @@
+LISTING FOR LOGIC DESCRIPTION FILE: Z80-DOT.pld                      Page 1
+
+CUPL(WM): Universal Compiler for Programmable Logic
+Version 5.0a Serial# 60008009
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+Created Fri Jun 07 19:48:46 2024
+
+  1:Name     z80-dot ;
+  2:PartNo   00 ;
+  3:Date     2024-06-02 ;
+  4:Revision 01 ;
+  5:Designer Maciej Witkowiak ;
+  6:Company  YTM Enterprises ;
+  7:Assembly None ;
+  8:Location  ;
+  9:Device   G16V8 ;
+ 10:
+ 11:/* *************** INPUT PINS *********************/
+ 12:PIN 1   = CLK1MHZ       ;       /* U12 pin 11, Z80 is active on low phase of the system clock */
+ 13:PIN 2   = DOTCLK        ;       /* 8MHz dot clock from expansion port pin 6 */
+ 14:PIN 3   = CLKIN ;       /* Z80 socket pin 6, original clock */
+ 15:PIN 4   = !MREQ ;       /* Z80 pin 19, memory request */
+ 16:PIN 5   = !IORQ ;       /* Z80 pin 20, I/O request */
+ 17:/* pins 6, 7, 8 not used but were connected on v1 PCB */
+ 18:PIN 6   = !BUSRQ        ;       /* bus request from VIC(?) or bus disconnect when 6502 is active */
+ 19:PIN 7   = !BUSACK       ;       /* Z80 ack for bus request */
+ 20:PIN 8   = !M1           ;       /* first machine cycle */
+ 21:PIN 9   = !RFSH ;       /* Z80 pin 28, if active: the MREQ request is memory refresh, ignore */
+ 22:PIN 11 = !RESET ;       /* Z80 pin 26 */
+ 23:PIN 12 = WAITLATCH      ;       /* input: latched wait from 74'74 pin 6 */
+ 24:PIN 13 = !WR            ;       /* Z80 pin 22, (active one cycle later than MREQ, without delay with IORQ) */
+ 25:PIN 14 = CLOCKSEL    ;     /* jumper for clock selection: open (internal pullup) = FAST, closed to GND = SLOW */
+ 26:
+ 27:/* *************** OUTPUT PINS *********************/
+ 28:
+ 29:PIN 19  = CLKOUT        ;       /* Z80 pin 6, clock, 4/8 MHz half of the time */
+ 30:PIN 18  = WAIT          ;       /* Z80 pin 24 */
+ 31:PIN 17  = WAITTRIGGER ; /* output: trigger latch to hold WAITLATCH low, 74'74 pin 3 */
+ 32:PIN 16 = WAITRESET      ;       /* output: reset latch, 74'74 pin 1 */
+ 33:
+ 34:/** Logic Equations **/
+ 35:
+ 36:/* output 8MHz during CLK1MHZ low phase and no memory request */
+ 37:/* hold low during CLK1MHZ low phase and memory write request, until next 1MHz clock tick */
+ 38:/* output mainboard clock CLKIN if CLOCKSEL is grounded */
+ 39:
+ 40:CLKOUT = (!RESET &  CLOCKSEL & !CLK1MHZ & !MREQ & !WR & !DOTCLK ) 
+ 41:       # (!RESET &  CLOCKSEL & !CLK1MHZ & !MREQ &  WR & !DOTCLK )
+ 42:       # (!RESET &  CLOCKSEL & !CLK1MHZ &  MREQ &  WR )
+ 43:       # (!RESET &  CLOCKSEL & !CLK1MHZ &  MREQ & !WR & !DOTCLK )
+ 44:       # (!RESET & !CLOCKSEL & CLKIN )
+ 45:;
+ 46:
+ 47:/* reset latch when going into VIC phase, keep that line high during Z80 phase */
+ 48:WAITRESET = RESET # !CLK1MHZ;
+ 49:
+ 50:/* trigger latch on any address bus request: I/O or memory but not during memory refresh */
+ 51:WAITTRIGGER = !RESET & !RFSH & (MREQ # IORQ);
+ 52:
+ 53:/* copy latched wait status to Z80 /WAIT input or keep it high when slow mode is selected */
+
+LISTING FOR LOGIC DESCRIPTION FILE: Z80-DOT.pld                      Page 2
+
+CUPL(WM): Universal Compiler for Programmable Logic
+Version 5.0a Serial# 60008009
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+Created Fri Jun 07 19:48:46 2024
+
+ 54:WAIT = CLOCKSEL & WAITLATCH # !CLOCKSEL;
+ 55:
+ 56:/*
+ 57:   7474:
+ 58:
+ 59:   WAITRESET 1   14 VCC
+ 60:         VCC 2   13 VCC
+ 61: WAITTRIGGER 3   12 GND
+ 62:         VCC 4   11 GND
+ 63:             5   10 VCC
+ 64:   WAITLATCH 6    9
+ 65:         GND 7    8
+ 66:*/
+ 67:
+ 68:
+
+
+
+Jedec Fuse Checksum       (2ef0)
+Jedec Transmit Checksum   (c101)

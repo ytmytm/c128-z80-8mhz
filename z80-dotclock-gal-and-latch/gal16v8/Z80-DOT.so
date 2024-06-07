@@ -1,0 +1,32 @@
+CSIM(WM): CUPL Simulation Program
+Version 5.0a Serial# 
+Copyright (c) 1983, 1998 Logical Devices, Inc.
+CREATED Fri Jun 07 19:48:48 2024
+
+LISTING FOR SIMULATION FILE: Z80-DOT.si
+
+   1: Name     z80-dot;
+   2: PartNo   00;
+   3: Date     2024-06-02;
+   4: Revision 01;
+   5: Designer Maciej Witkowiak;
+   6: Company  YTM Enterprises;
+   7: Assembly None;
+   8: Location ;
+   9: 
+  10: 
+  11: ORDER: CLK1MHZ ; 
+  12: 
+  13: 
+
+==========
+      C   
+      L   
+      K   
+      1   
+      M   
+      H   
+      Z   
+==========
+0001: 1
+0002: 0

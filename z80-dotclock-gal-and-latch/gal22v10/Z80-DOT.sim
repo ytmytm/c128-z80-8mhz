@@ -1,0 +1,67 @@
+%SIGNAL
+PIN   7 = !BUSACK 
+PIN   6 = !BUSRQ 
+PIN   1 =  CLK1MHZ 
+PIN   3 =  CLKIN 
+PIN  23 =  CLKOUT 
+PIN  18 =  CLOCKSEL 
+PIN   2 =  DOTCLK 
+PIN   5 = !IORQ 
+PIN   8 = !M1 
+PIN   4 = !MREQ 
+PIN  15 = !RESET 
+PIN   9 = !RFSH 
+PIN  22 =  WAIT 
+PIN  16 =  WAITLATCH 
+PIN  20 =  WAITRESET 
+PIN  21 =  WAITTRIGGER 
+PIN  17 = !WR 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+!CLKOUT =>
+    !RESET
+  # CLK1MHZ & CLOCKSEL
+  # !CLKIN & !CLOCKSEL
+  # CLOCKSEL & DOTCLK & MREQ
+  # CLOCKSEL & DOTCLK & WR
+
+!WAIT =>
+    CLOCKSEL & !WAITLATCH
+
+!WAITRESET =>
+    CLK1MHZ & RESET
+
+!WAITTRIGGER =>
+    !RESET
+  # !RFSH
+  # IORQ & MREQ
+
+CLKOUT.oe  =>
+    1 
+
+CLOCKSEL.oe  =>
+    0 
+
+RESET.oe  =>
+    0 
+
+WAIT.oe  =>
+    1 
+
+WAITLATCH.oe  =>
+    0 
+
+WAITRESET.oe  =>
+    1 
+
+WAITTRIGGER.oe  =>
+    1 
+
+WR.oe  =>
+    0 
+
+%END
