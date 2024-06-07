@@ -60,6 +60,10 @@ The Kicad project is in [z80-dotclock-gal-and-latch/](z80-dotclock-gal-and-latch
 
 Schematic is also [available in PDF form](z80-dotclock-gal-and-latch/plots/z80-dot-gal.pdf).
 
+## PCB
+
+Gerber files generated from PCB project that should fit C128 and C128DCR are in  [z80-dotclock-gal-and-latch/gerbers/](z80-dotclock-gal-and-latch/gerbers) folder.
+
 ## LOGIC EQUATIONS
 
 PLD file to be used with WinCUPL to generate JED file for programming GAL is available in two versions:

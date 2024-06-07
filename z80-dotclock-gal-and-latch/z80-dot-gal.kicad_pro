@@ -49,11 +49,7 @@
         }
       },
       "diff_pair_dimensions": [],
-      "drc_exclusions": [
-        "courtyards_overlap|126080001|80320001|a6ff04db-784e-4b2b-82fc-112c480510c5|d127179f-3936-49eb-85e0-79667a2c7e58",
-        "courtyards_overlap|130295001|125140001|0ac81955-472b-4967-a573-ac9d6fdf8308|a6ff04db-784e-4b2b-82fc-112c480510c5",
-        "silk_over_copper|135367500|81255000|a4f5cf1a-b6cc-475f-b48c-77a66e418c87|3bef3f65-558d-46ac-a148-8e15581e40eb"
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
