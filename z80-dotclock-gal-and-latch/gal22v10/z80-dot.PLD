@@ -8,8 +8,6 @@ Assembly None ;
 Location  ;
 Device   G22V10 ;
 
-/* THIS IS NOT TESTED, REVISE ALSO GAL16 CODE */
-
 /* *************** INPUT PINS *********************/
 PIN 1	= WAITTRIGGERIN ;       /* routed from WAITTRIGGER */
 PIN 2	= CLK1MHZ	;	/* U12 pin 11, Z80 is active on low phase of the system clock */
@@ -18,7 +16,7 @@ PIN 4	= CLKIN		;	/* Z80 socket pin 6, original clock */
 PIN 5	= !MREQ		;	/* Z80 pin 19, memory request */
 PIN 6	= !IORQ		;	/* Z80 pin 20, I/O request */
 PIN 7	= !RD   	;       /* Z80 pin 21 */
-PIN 8	= !WR		;	/* Z80 pin 22, (active one cycle later than MREQ, without delay with IORQ)
+PIN 8	= !WR		;	/* Z80 pin 22, (active one cycle later than MREQ, without delay with IORQ) */
 PIN 9	= !RFSH		;	/* Z80 pin 28, if active: the MREQ request is memory refresh, ignore */
 PIN 16	= !RESET	;	/* Z80 pin 26 */
 PIN 17	= WAITLATCH	;	/* input: latched wait from 74'74 pin 6 */

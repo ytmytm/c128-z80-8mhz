@@ -2,33 +2,32 @@
 #
 # CUPL(WM)        5.0a Serial# 60008009
 # Device          g16v8s  Library DLIB-h-40-9
-# Created         Fri Jun 07 19:48:46 2024
+# Created         Sun Jul 14 22:42:03 2024
 # Name            z80-dot 
 # Partno          00 
-# Revision        01 
-# Date            2024-06-02 
+# Revision        02 
+# Date            2024-06-20 
 # Designer        Maciej Witkowiak 
 # Company         YTM Enterprises 
 # Assembly        None 
 # Location        
 #
-# Inputs  !BUSACK !BUSRQ CLK1MHZ CLKIN 
-#         CLKOUT CLOCKSEL DOTCLK !IORQ 
-#         !M1 !MREQ !RESET !RFSH 
-#         WAIT WAITLATCH WAITRESET WAITTRIGGER 
-#         !WR 
+# Inputs  CLK1MHZ CLKIN CLKOUT CLOCKSEL 
+#         DOTCLK !IORQ !MREQ !RD 
+#         !RESET !RFSH WAIT WAITLATCH 
+#         WAITRESET WAITTRIGGER WAITTRIGGERIN !WR 
 # Outputs CLKOUT WAIT WAITRESET WAITTRIGGER 
-.i 17
+.i 16
 .o 4
 .p 10
-----------1------ 1~~~
---1--1----------- 1~~~
----0-0----------- 1~~~
------11--0------- 1~~~
------11---------0 1~~~
------1-------0--- ~1~~
---1-------0------ ~~1~
-----------1------ ~~~1
------------1----- ~~~1
--------0-0------- ~~~1
+--------1------- 1~~~
+1--1------------ 1~~~
+-0-0------------ 1~~~
+---11-0--------- 1~~~
+---11----------0 1~~~
+---1-------0---- ~1~~
+1-------0------- ~~1~
+--------1------- ~~~1
+---------1------ ~~~1
+-----00--------- ~~~1
 .end

@@ -3,40 +3,40 @@ LISTING FOR LOGIC DESCRIPTION FILE: Z80-DOT.pld                      Page 1
 CUPL(WM): Universal Compiler for Programmable Logic
 Version 5.0a Serial# 60008009
 Copyright (c) 1983, 1998 Logical Devices, Inc.
-Created Fri Jun 07 19:49:54 2024
+Created Sun Jul 14 22:37:19 2024
 
   1:Name     z80-dot ;
   2:PartNo   00 ;
-  3:Date     2024-06-02 ;
-  4:Revision 01 ;
+  3:Date     2024-06-20 ;
+  4:Revision 02 ;
   5:Designer Maciej Witkowiak ;
   6:Company  YTM Enterprises ;
   7:Assembly None ;
   8:Location  ;
   9:Device   G22V10 ;
  10:
- 11:/* *************** INPUT PINS *********************/
- 12:PIN 1   = CLK1MHZ       ;       /* U12 pin 11, Z80 is active on low phase of the system clock */
- 13:PIN 2   = DOTCLK        ;       /* 8MHz dot clock from expansion port pin 6 */
- 14:PIN 3   = CLKIN ;       /* Z80 socket pin 6, original clock */
- 15:PIN 4   = !MREQ ;       /* Z80 pin 19, memory request */
- 16:PIN 5   = !IORQ ;       /* Z80 pin 20, I/O request */
- 17:/* pins 6, 7, 8 not used but were connected on v1 PCB */
- 18:PIN 6   = !BUSRQ        ;       /* bus request from VIC(?) or bus disconnect when 6502 is active */
- 19:PIN 7   = !BUSACK       ;       /* Z80 ack for bus request */
- 20:PIN 8   = !M1           ;       /* first machine cycle */
- 21:PIN 9   = !RFSH ;       /* Z80 pin 28, if active: the MREQ request is memory refresh, ignore */
- 22:PIN 15 = !RESET ;       /* Z80 pin 26 */
- 23:PIN 16 = WAITLATCH      ;       /* input: latched wait from 74'74 pin 6 */
- 24:PIN 17 = !WR            ;       /* Z80 pin 22, (active one cycle later than MREQ, without delay with IORQ) */
- 25:PIN 18 = CLOCKSEL    ;     /* jumper for clock selection: open (internal pullup) = FAST, closed to GND = SLOW */
+ 11:/* THIS IS NOT TESTED, REVISE ALSO GAL16 CODE */
+ 12:
+ 13:/* *************** INPUT PINS *********************/
+ 14:PIN 1   = WAITTRIGGERIN ;       /* routed from WAITTRIGGER */
+ 15:PIN 2   = CLK1MHZ       ;       /* U12 pin 11, Z80 is active on low phase of the system clock */
+ 16:PIN 3   = DOTCLK        ;       /* 8MHz dot clock from expansion port pin 6 or its multiplication */
+ 17:PIN 4   = CLKIN         ;       /* Z80 socket pin 6, original clock */
+ 18:PIN 5   = !MREQ         ;       /* Z80 pin 19, memory request */
+ 19:PIN 6   = !IORQ         ;       /* Z80 pin 20, I/O request */
+ 20:PIN 7   = !RD           ;       /* Z80 pin 21 */
+ 21:PIN 8   = !WR           ;       /* Z80 pin 22, (active one cycle later than MREQ, without delay with IORQ) */
+ 22:PIN 9   = !RFSH         ;       /* Z80 pin 28, if active: the MREQ request is memory refresh, ignore */
+ 23:PIN 16  = !RESET        ;       /* Z80 pin 26 */
+ 24:PIN 17  = WAITLATCH     ;       /* input: latched wait from 74'74 pin 6 */
+ 25:PIN 18  = CLOCKSEL      ;       /* jumper for clock selection: open (internal pullup) = FAST, closed to GND = SLOW */
  26:
  27:/* *************** OUTPUT PINS *********************/
  28:
  29:PIN 23  = CLKOUT        ;       /* Z80 pin 6, clock, 4/8 MHz half of the time */
  30:PIN 22  = WAIT          ;       /* Z80 pin 24 */
- 31:PIN 21  = WAITTRIGGER ; /* output: trigger latch to hold WAITLATCH low, 74'74 pin 3 */
- 32:PIN 20 = WAITRESET      ;       /* output: reset latch, 74'74 pin 1 */
+ 31:PIN 21  = WAITTRIGGER   ;       /* output: trigger latch to hold WAITLATCH low, 74'74 pin 3 */
+ 32:PIN 20  = WAITRESET     ;       /* output: reset latch, 74'74 pin 1 */
  33:
  34:/** Logic Equations **/
  35:
@@ -64,7 +64,7 @@ LISTING FOR LOGIC DESCRIPTION FILE: Z80-DOT.pld                      Page 2
 CUPL(WM): Universal Compiler for Programmable Logic
 Version 5.0a Serial# 60008009
 Copyright (c) 1983, 1998 Logical Devices, Inc.
-Created Fri Jun 07 19:49:54 2024
+Created Sun Jul 14 22:37:19 2024
 
  54:WAIT = CLOCKSEL & WAITLATCH # !CLOCKSEL;
  55:
@@ -84,5 +84,5 @@ Created Fri Jun 07 19:49:54 2024
 
 
 
-Jedec Fuse Checksum       (4e3a)
-Jedec Transmit Checksum   (2062)
+Jedec Fuse Checksum       (4cf1)
+Jedec Transmit Checksum   (206c)

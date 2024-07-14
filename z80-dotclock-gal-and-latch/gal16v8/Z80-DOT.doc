@@ -5,11 +5,11 @@
 
 CUPL(WM)        5.0a Serial# 60008009
 Device          g16v8s  Library DLIB-h-40-9
-Created         Fri Jun 07 19:48:46 2024
+Created         Sun Jul 14 22:42:03 2024
 Name            z80-dot 
 Partno          00 
-Revision        01 
-Date            2024-06-02 
+Revision        02 
+Date            2024-06-20 
 Designer        Maciej Witkowiak 
 Company         YTM Enterprises 
 Assembly        None 
@@ -46,23 +46,22 @@ Pin Variable                                    Pterms   Max     Min
 Pol   Name              Ext     Pin     Type     Used   Pterms  Level   
 --- --------            ---     ---     ----    ------  ------  -----   
 
- !  BUSACK                      7        V        -       -       -     
- !  BUSRQ                       6        V        -       -       -     
-    CLK1MHZ                     1        V        -       -       -     
-    CLKIN                       3        V        -       -       -     
+    CLK1MHZ                     2        V        -       -       -     
+    CLKIN                       4        V        -       -       -     
     CLKOUT                      19       V        5       8       2     
     CLOCKSEL                    14       V        -       -       -     
-    DOTCLK                      2        V        -       -       -     
- !  IORQ                        5        V        -       -       -     
- !  M1                          8        V        -       -       -     
- !  MREQ                        4        V        -       -       -     
- !  RESET                       11       V        -       -       -     
+    DOTCLK                      3        V        -       -       -     
+ !  IORQ                        6        V        -       -       -     
+ !  MREQ                        5        V        -       -       -     
+ !  RD                          7        V        -       -       -     
+ !  RESET                       12       V        -       -       -     
  !  RFSH                        9        V        -       -       -     
     WAIT                        18       V        1       8       2     
-    WAITLATCH                   12       V        -       -       -     
+    WAITLATCH                   13       V        -       -       -     
     WAITRESET                   16       V        1       8       2     
     WAITTRIGGER                 17       V        3       8       2     
- !  WR                          13       V        -       -       -     
+    WAITTRIGGERIN               1        V        -       -       -     
+ !  WR                          8        V        -       -       -     
 
 
 LEGEND    D : default variable         F : field      G : group
@@ -78,16 +77,16 @@ LEGEND    D : default variable         F : field      G : group
 Syn   02192 - Ac0   02193 x 
 
 Pin #19  02048  Pol -  02120  Ac1 x 
- 00000 -------------------------------x 
- 00032 --x---------------x------------- 
- 00064 -----x-------------x------------ 
- 00096 x-------x---------x------------- 
- 00128 x-----------------x---x--------- 
+ 00000 ---------------------------x---- 
+ 00032 x-----------------x------------- 
+ 00064 ---------x---------x------------ 
+ 00096 ----x-------x-----x------------- 
+ 00128 ----x-------------x-----x------- 
  00160 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00192 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00224 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
 Pin #18  02049  Pol -  02121  Ac1 x 
- 00256 ------------------x--------x---- 
+ 00256 ------------------x----x-------- 
  00288 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00320 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00352 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
@@ -96,16 +95,16 @@ Pin #18  02049  Pol -  02121  Ac1 x
  00448 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00480 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
 Pin #17  02050  Pol -  02122  Ac1 x 
- 00512 -------------------------------x 
+ 00512 ---------------------------x---- 
  00544 -----------------------------x-- 
- 00576 --------x---x------------------- 
+ 00576 ------------x---x--------------- 
  00608 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00640 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00672 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00704 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00736 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
 Pin #16  02051  Pol -  02123  Ac1 x 
- 00768 --x---------------------------x- 
+ 00768 x-------------------------x----- 
  00800 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00832 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
  00864 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
@@ -160,15 +159,15 @@ LEGEND    X : fuse not blown
 
                                ______________
                               |   z80-dot    |
-                  CLK1MHZ x---|1           20|---x Vcc                      
-                   DOTCLK x---|2           19|---x CLKOUT                   
-                    CLKIN x---|3           18|---x WAIT                     
-                    !MREQ x---|4           17|---x WAITTRIGGER              
-                    !IORQ x---|5           16|---x WAITRESET                
-                   !BUSRQ x---|6           15|---x                          
-                  !BUSACK x---|7           14|---x CLOCKSEL                 
-                      !M1 x---|8           13|---x !WR                      
-                    !RFSH x---|9           12|---x WAITLATCH                
-                      GND x---|10          11|---x !RESET                   
+            WAITTRIGGERIN x---|1           20|---x Vcc                      
+                  CLK1MHZ x---|2           19|---x CLKOUT                   
+                   DOTCLK x---|3           18|---x WAIT                     
+                    CLKIN x---|4           17|---x WAITTRIGGER              
+                    !MREQ x---|5           16|---x WAITRESET                
+                    !IORQ x---|6           15|---x                          
+                      !RD x---|7           14|---x CLOCKSEL                 
+                      !WR x---|8           13|---x WAITLATCH                
+                    !RFSH x---|9           12|---x !RESET                   
+                      GND x---|10          11|---x                          
                               |______________|
 
